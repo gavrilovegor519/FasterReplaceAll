@@ -13,14 +13,14 @@ public class ReplaceAll {
         int count = 0;
 
         while (i < j) {
-            boolean newLine = inputChars[i] == '\n';
-            boolean quotes = inputChars[i] == '"';
-            boolean squareBrackets = i < j - 1 && inputChars[i] == '[' && inputChars[i + 1] == ']';
+            boolean newLineTest = inputChars[i] == '\n';
+            boolean quotesTest = inputChars[i] == '"';
+            boolean squareBracketsTest = i < j - 1 && inputChars[i] == '[' && inputChars[i + 1] == ']';
 
-            if (!newLine) {
-                if (quotes) {
+            if (!newLineTest) {
+                if (quotesTest) {
                     result[count] = '\'';
-                } else if (squareBrackets) {
+                } else if (squareBracketsTest) {
                     result[count] = '{';
                     result[count + 1] = '}';
                 } else {
@@ -28,15 +28,15 @@ public class ReplaceAll {
                 }
             }
 
-            if (!newLine) {
-                if (squareBrackets) {
+            if (!newLineTest) {
+                if (squareBracketsTest) {
                     count += 2;
                 } else {
                     count++;
                 }
             }
 
-            if (squareBrackets) {
+            if (squareBracketsTest) {
                 i += 2;
             } else {
                 i++;
