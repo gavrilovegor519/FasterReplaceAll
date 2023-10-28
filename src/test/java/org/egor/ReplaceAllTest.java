@@ -45,4 +45,11 @@ class ReplaceAllTest {
                 "a[",
                 ReplaceAll.replaceAll("a["));
     }
+
+    @Test
+    void test7() {
+        Assertions.assertEquals(
+                "",
+                ReplaceAll.replaceAll(""));
+    }
 }
