@@ -13,9 +13,9 @@ public class ReplaceAll {
         int count = 0;
 
         while (i < j) {
-            boolean isNewLine = inputChars[i] == '\n';
-            boolean isQuotes = inputChars[i] == '"';
-            boolean isSquareBrackets = i < j - 1 && inputChars[i] == '[' && inputChars[i + 1] == ']';
+            final boolean isNewLine = inputChars[i] == '\n';
+            final boolean isQuotes = inputChars[i] == '"';
+            final boolean isSquareBrackets = i < j - 1 && inputChars[i] == '[' && inputChars[i + 1] == ']';
 
             if (!isNewLine) {
                 if (isQuotes) {
@@ -36,11 +36,7 @@ public class ReplaceAll {
                 }
             }
 
-            if (isSquareBrackets) {
-                i += 2;
-            } else {
-                i++;
-            }
+            i = isSquareBrackets ? i + 2 : i + 1;
         }
 
         return new String(result, 0, count);
