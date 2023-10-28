@@ -12,29 +12,35 @@ public class ReplaceAll {
 
         int count = 0;
 
-        while (i < j){
+        while (i < j) {
             boolean test1 = chars[i] == '\n';
             boolean test2 = chars[i] == '"';
-            boolean test3 = false;
+            boolean test3 = i < j - 1 && chars[i] == '[' && chars[i + 1] == ']';
 
-            if (i < j - 1) {
-                test3 = chars[i] == '[' && chars[i + 1] == ']';
+            if (!test1) {
+                if (test2) {
+                    result[count] = '\'';
+                } else if (test3) {
+                    result[count] = '{';
+                    result[count + 1] = '}';
+                } else {
+                    result[count] = chars[i];
+                }
             }
 
-            if (test1) {}
-            else if (test2) result[count] = '\'';
-            else if (test3) {
-                result[count] = '{';
-                result[count + 1] = '}';
+            if (!test1) {
+                if (test3) {
+                    count += 2;
+                } else {
+                    count++;
+                }
             }
-            else result[count] = chars[i];
 
-            if (test1) {}
-            else if (test3) count += 2;
-            else count++;
-
-            if (test3) i += 2;
-            else i++;
+            if (test3) {
+                i += 2;
+            } else {
+                i++;
+            }
         }
 
         return new String(result, 0, count);
