@@ -4,8 +4,8 @@ public class ReplaceAll {
     private ReplaceAll() {}
 
     public static String replaceAll(String input) {
-        final char[] chars = input.toCharArray();
-        char[] result = new char[chars.length];
+        final char[] inputChars = input.toCharArray();
+        char[] result = new char[inputChars.length];
 
         int i = 0;
         final int j = input.length();
@@ -13,30 +13,30 @@ public class ReplaceAll {
         int count = 0;
 
         while (i < j) {
-            boolean test1 = chars[i] == '\n';
-            boolean test2 = chars[i] == '"';
-            boolean test3 = i < j - 1 && chars[i] == '[' && chars[i + 1] == ']';
+            boolean newLine = inputChars[i] == '\n';
+            boolean quotes = inputChars[i] == '"';
+            boolean squareBrackets = i < j - 1 && inputChars[i] == '[' && inputChars[i + 1] == ']';
 
-            if (!test1) {
-                if (test2) {
+            if (!newLine) {
+                if (quotes) {
                     result[count] = '\'';
-                } else if (test3) {
+                } else if (squareBrackets) {
                     result[count] = '{';
                     result[count + 1] = '}';
                 } else {
-                    result[count] = chars[i];
+                    result[count] = inputChars[i];
                 }
             }
 
-            if (!test1) {
-                if (test3) {
+            if (!newLine) {
+                if (squareBrackets) {
                     count += 2;
                 } else {
                     count++;
                 }
             }
 
-            if (test3) {
+            if (squareBrackets) {
                 i += 2;
             } else {
                 i++;
